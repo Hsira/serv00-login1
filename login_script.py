@@ -27,7 +27,8 @@ async def login(username, password, panel):
     global browser
 
     page = None  # 确保 page 在任何情况下都被定义
-    serviceName = 'ct8' if 'ct8' in panel else 'serv00'
+    # serviceName = 'ct8' if 'ct8' in panel else 'serv00'
+    serviceName = 'ct8' if 'ct8' in panel else 's0'
     try:
         if not browser:
             browser = await launch(headless=True, args=['--no-sandbox', '--disable-setuid-sandbox'])
@@ -89,12 +90,15 @@ async def main():
         if is_logged_in:
             now_utc = format_to_iso(datetime.utcnow())
             now_beijing = format_to_iso(datetime.utcnow() + timedelta(hours=8))
-            success_message = f'{serviceName}账号 {username} 于北京时间 {now_beijing}（UTC时间 {now_utc}）登录成功！'
+            #success_message = f'{serviceName}账号 {username} 于北京时间 {now_beijing}（UTC时间 {now_utc}）登录成功！'
+            success_message = f'{serviceName}账号 {username} 于 {now_beijing}登成'
             message += success_message + '\n'
             print(success_message)
         else:
-            message += f'{serviceName}账号 {username} 登录失败，请检查{serviceName}账号和密码是否正确。\n'
-            print(f'{serviceName}账号 {username} 登录失败，请检查{serviceName}账号和密码是否正确。')
+            #message += f'{serviceName}账号 {username} 登录失败，请检查{serviceName}账号和密码是否正确。\n'
+            message += f'{serviceName}号 {username} 登败，{serviceName}卡密正确？\n'
+            #print(f'{serviceName}账号 {username} 登录失败，请检查{serviceName}账号和密码是否正确。')
+            print(f'{serviceName}号 {username} 登败，{serviceName}卡密正确？')
 
         delay = random.randint(1000, 8000)
         await delay_time(delay)
